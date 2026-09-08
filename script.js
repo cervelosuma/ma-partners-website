@@ -55,3 +55,22 @@ if (!reduceMotion) {
 } else {
   document.querySelectorAll('.reveal').forEach((section) => section.classList.add('in-view'));
 }
+
+// Google Analytics: track clicks that express contact intent.
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a');
+  if (!link || typeof window.gtag !== 'function') return;
+
+  const href = link.getAttribute('href') || '';
+  const text = (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100);
+  const isContact = href.startsWith('mailto:') || href === '#contact' || href.endsWith('#contact');
+
+  if (isContact) {
+    window.gtag('event', 'contact_click', {
+      link_url: link.href,
+      link_text: text,
+      page_path: window.location.pathname,
+      language: document.documentElement.lang || ''
+    });
+  }
+});
