@@ -2,7 +2,16 @@ const button = document.querySelector('.menu-button');
 const nav = document.querySelector('.site-nav');
 
 // Representative profile: route each language homepage to its matching profile page.
-const pageLang = document.documentElement.lang || 'ja';
+// Prefer the URL path so the label is always correct even if an HTML lang value is stale.
+const path = window.location.pathname;
+const pageLang = path.startsWith('/ko/')
+  ? 'ko'
+  : path.startsWith('/zh/')
+    ? 'zh-Hans'
+    : path.startsWith('/en/')
+      ? 'en'
+      : (document.documentElement.lang || 'ja');
+
 const profileConfig = pageLang.startsWith('ko')
   ? {
       url: '/ko/atsushi-sugita/',
@@ -33,12 +42,27 @@ const profileConfig = pageLang.startsWith('ko')
 
 const profileUrl = profileConfig.url;
 
-if (nav && !nav.querySelector(`a[href="${profileUrl}"]`)) {
-  const companyLink = nav.querySelector('a[href="#company"]');
-  const profileLink = document.createElement('a');
-  profileLink.href = profileUrl;
-  profileLink.textContent = profileConfig.navLabel;
-  companyLink?.insertAdjacentElement('afterend', profileLink);
+if (nav) {
+  // Correct an existing profile link as well as create it when missing.
+  // This prevents non-Japanese pages from retaining the Japanese label.
+  const existingProfileLink = Array.from(nav.querySelectorAll('a')).find((link) => {
+    const href = link.getAttribute('href') || '';
+    const text = (link.textContent || '').trim();
+    return href.includes('atsushi-sugita') || text === '代表プロフィール';
+  });
+
+  if (existingProfileLink) {
+    existingProfileLink.href = profileUrl;
+    existingProfileLink.textContent = profileConfig.navLabel;
+    existingProfileLink.setAttribute('aria-label', profileConfig.ariaLabel);
+  } else {
+    const companyLink = nav.querySelector('a[href="#company"]');
+    const profileLink = document.createElement('a');
+    profileLink.href = profileUrl;
+    profileLink.textContent = profileConfig.navLabel;
+    profileLink.setAttribute('aria-label', profileConfig.ariaLabel);
+    companyLink?.insertAdjacentElement('afterend', profileLink);
+  }
 }
 
 const portrait = document.querySelector('.message-portrait');
@@ -58,6 +82,7 @@ if (portrait) {
       photoLink.appendChild(photoFrame);
     } else if (photoFrame?.closest('a')) {
       photoFrame.closest('a').href = profileUrl;
+      photoFrame.closest('a').setAttribute('aria-label', profileConfig.ariaLabel);
     }
 
     if (caption && !caption.closest('a')) {
@@ -68,6 +93,7 @@ if (portrait) {
       captionLink.appendChild(caption);
     } else if (caption?.closest('a')) {
       caption.closest('a').href = profileUrl;
+      caption.closest('a').setAttribute('aria-label', profileConfig.ariaLabel);
     }
   }
 }
