@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ma-ptrs.co.jp/</loc>
-    <lastmod>2026-09-12</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-ptrs.co.jp/atsushi-sugita/</loc>
-    <lastmod>2026-09-12</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-ptrs.co.jp/en/</loc>
-  </url>
-  <url>
-    <loc>https://ma-ptrs.co.jp/ko/</loc>
-  </url>
-  <url>
-    <loc>https://ma-ptrs.co.jp/zh/</loc>
-  </url>
+  <url><loc>https://ma-ptrs.co.jp/</loc><lastmod>2026-09-12</lastmod></url>
+  <url><loc>https://ma-ptrs.co.jp/atsushi-sugita/</loc><lastmod>2026-09-12</lastmod></url>
+  <url><loc>https://ma-ptrs.co.jp/en/</loc></url>
+  <url><loc>https://ma-ptrs.co.jp/en/atsushi-sugita/</loc><lastmod>2026-09-12</lastmod></url>
+  <url><loc>https://ma-ptrs.co.jp/ko/</loc></url>
+  <url><loc>https://ma-ptrs.co.jp/ko/atsushi-sugita/</loc><lastmod>2026-09-12</lastmod></url>
+  <url><loc>https://ma-ptrs.co.jp/zh/</loc></url>
+  <url><loc>https://ma-ptrs.co.jp/zh/atsushi-sugita/</loc><lastmod>2026-09-12</lastmod></url>
 </urlset>
