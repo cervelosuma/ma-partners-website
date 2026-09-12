@@ -1,6 +1,49 @@
 const button = document.querySelector('.menu-button');
 const nav = document.querySelector('.site-nav');
 
+// Representative profile: make it reachable directly from the homepage.
+const profileUrl = '/atsushi-sugita/';
+if (nav && !nav.querySelector(`a[href="${profileUrl}"]`)) {
+  const companyLink = nav.querySelector('a[href="#company"]');
+  const profileLink = document.createElement('a');
+  profileLink.href = profileUrl;
+  profileLink.textContent = '代表プロフィール';
+  companyLink?.insertAdjacentElement('afterend', profileLink);
+}
+
+const portrait = document.querySelector('.message-portrait');
+if (portrait && !portrait.querySelector(`a[href="${profileUrl}"]`)) {
+  const photoFrame = portrait.querySelector('.message-photo-frame');
+  const caption = portrait.querySelector('figcaption');
+  if (photoFrame) {
+    const photoLink = document.createElement('a');
+    photoLink.href = profileUrl;
+    photoLink.setAttribute('aria-label', '代表取締役 杉田 篤のプロフィールを見る');
+    photoFrame.parentNode.insertBefore(photoLink, photoFrame);
+    photoLink.appendChild(photoFrame);
+  }
+  if (caption) {
+    const captionLink = document.createElement('a');
+    captionLink.href = profileUrl;
+    captionLink.setAttribute('aria-label', '代表取締役 杉田 篤のプロフィールを見る');
+    caption.parentNode.insertBefore(captionLink, caption);
+    captionLink.appendChild(caption);
+  }
+}
+
+const representativeRow = Array.from(document.querySelectorAll('.company-table > div')).find((row) => row.querySelector('dt')?.textContent.trim() === '代表取締役');
+if (representativeRow) {
+  const dd = representativeRow.querySelector('dd');
+  if (dd && !dd.querySelector('a')) {
+    const link = document.createElement('a');
+    link.href = profileUrl;
+    link.textContent = dd.textContent.trim();
+    link.setAttribute('aria-label', '杉田 篤のプロフィールを見る');
+    dd.textContent = '';
+    dd.appendChild(link);
+  }
+}
+
 button?.addEventListener('click', () => {
   const open = button.getAttribute('aria-expanded') === 'true';
   button.setAttribute('aria-expanded', String(!open));
