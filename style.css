@@ -170,10 +170,10 @@ a { color: inherit; }
 .email { display: block; width: fit-content; margin: 0; color: #fff; font-size: 14px; }
 .email span { color: rgba(255,255,255,.7); }
 .site-footer { color: #fff; background: #071f30; }
-.footer-main { min-height: 170px; max-width: var(--max); margin: auto; padding: 48px 30px; display: flex; align-items: center; justify-content: space-between; }
-.footer-main img { width: 180px; }
+.footer-main { min-height: 0; max-width: var(--max); margin: auto; padding: 28px 30px; display: flex; align-items: center; justify-content: space-between; }
+.footer-main img { width: 150px; }
 .footer-main a { color: #fff; text-decoration: none; font-size: 13px; }
-.footer-copyright { padding: 25px max(30px, calc((100% - var(--max))/2 + 30px)); border-top: 1px solid rgba(255,255,255,.12); color: #fff; font-size: 14px; font-weight: 600; }
+.footer-copyright { padding: 16px max(30px, calc((100% - var(--max))/2 + 30px)); border-top: 1px solid rgba(255,255,255,.12); color: #fff; font-size: 14px; font-weight: 600; }
 
 @media (max-width: 800px) {
   .header-inner { height: 80px; padding: 0 20px; }
@@ -233,8 +233,8 @@ a { color: inherit; }
   .contact h2 { white-space: normal; font-size: 30px; }
   .contact-description { white-space: normal; }
   .contact-actions { margin-top: 20px; align-items: flex-start; flex-direction: column; gap: 14px; }
-  .footer-main { min-height: 140px; padding: 38px 20px; align-items: flex-start; flex-direction: column; gap: 32px; }
-  .footer-copyright { padding: 22px 20px; font-size: 13px; }
+  .footer-main { min-height: 0; padding: 26px 20px; align-items: flex-start; flex-direction: column; gap: 32px; }
+  .footer-copyright { padding: 15px 20px; font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
